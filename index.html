@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平方数判定ゲーム</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>平方数判定ゲーム</h1>
+    <p>次の数字の2乗と一致するか入力してください。</p>
+    <input type="number" id="inputBox" autofocus>
+    <button onclick="checkSquare()">判定</button>
+
+    <div class="message" id="message"></div>
+
+    <script>
+        let currentNumber = 11;
+
+        function checkSquare() {
+            const userInput = document.getElementById("inputBox").value;
+            const square = currentNumber * currentNumber;
+
+            const message = document.getElementById("message");
+
+            if (parseInt(userInput) === square) {
+                message.textContent = "正解！次の数字へ進みます。";
+                currentNumber++;
+            } else {
+                message.textContent = "間違いです。最初の数字からやり直します。";
+                currentNumber = 11;
+            }
+
+            // 自動的にテキストボックスにカーソルを移動
+            document.getElementById("inputBox").value = '';
+            document.getElementById("inputBox").focus();
+        }
+    </script>
+
+</body>
+</html>
