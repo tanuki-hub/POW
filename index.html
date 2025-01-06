@@ -60,6 +60,7 @@
 
     <script>
         let currentNumber = 11;
+        let correctAnswer = null; // 正解を保存する変数
 
         function checkSquare() {
             const userInput = document.getElementById("inputBox").value;
@@ -77,8 +78,8 @@
                 message.textContent = "正解！次の数字へ進みます。";
                 currentNumber++;
             } else {
-                message.textContent = "間違いです。最初の数字からやり直します。";
-                currentNumber = 11;
+                correctAnswer = square;  // 間違った場合に正解を保存
+                message.textContent = `間違いです。正解は ${correctAnswer} です。正解を入力したら最初からやり直します。`;
             }
 
             // 現在の数字を表示
@@ -89,10 +90,17 @@
             document.getElementById("inputBox").focus();
         }
 
-        // Enterキーでも判定する処理
+        // 正解を入力した場合、最初からやり直す
         document.getElementById("inputBox").addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
-                checkSquare();
+                if (correctAnswer !== null && parseInt(document.getElementById("inputBox").value) === correctAnswer) {
+                    correctAnswer = null; // 正解をリセット
+                    currentNumber = 11; // 数字を最初に戻す
+                    document.getElementById("message").textContent = "最初からやり直します。";
+                    document.getElementById("currentNumberDisplay").textContent = `現在の数字: ${currentNumber}`;
+                } else {
+                    checkSquare();
+                }
             }
         });
     </script>
