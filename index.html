@@ -98,6 +98,8 @@
                     currentNumber = 11; // 数字を最初に戻す
                     document.getElementById("message").textContent = "最初からやり直します。";
                     document.getElementById("currentNumberDisplay").textContent = `現在の数字: ${currentNumber}`;
+                    document.getElementById("inputBox").value = '';  // テキストボックスをクリア
+                    document.getElementById("inputBox").focus();  // 再度カーソルをテキストボックスに
                 } else {
                     checkSquare();
                 }
